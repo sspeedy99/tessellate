@@ -1,0 +1,34 @@
+# Go
+/bin/
+*.exe
+*.test
+*.out
+
+# eBPF build artifacts
+*.o
+*.bpf.o
+
+# SONiC-VS image artifacts
+/scripts/artifacts/
+*.gz
+*.img
+
+# containerlab runtime state
+.clab/
+*.clab.yml.bak
+ansible-inventory.yml
+topology-data.json
+
+# env / secrets
+.env
+*.local.env
+
+# editor/OS
+.vscode/
+.idea/
+*.swp
+.DS_Store
+
+#docs
+docs/superpowers
+prompt.txt
