@@ -8,9 +8,16 @@
 
 ---
 
-Tessellate watches a network fabric at the kernel level, drafts BGP policy changes in response to what it sees, and only lets a change reach a switch after it's been formally proven safe.
+## What is Tessellate?
 
-Most "self-healing network" tools either skip the safety proof or skip the real hardware-adjacent testing. Tessellate does neither: every policy change is checked against a Z3-backed invariant framework — no routing loops, no blackholed prefixes, no contradictory policy — before it's applied, and the whole system is validated against a reproducible containerlab fabric of SONiC-VS switches running real FRR eBGP.
+Tessellate is an experimental, closed-loop AI control plane for SONiC-based network fabrics. It lets an LLM propose BGP policy changes in response to live network conditions, formally verifies every proposed change with Z3 before it's allowed anywhere near a switch, and uses distributed consensus to keep that policy state identical across every node in the fabric.
+
+
+In short: AI proposes, Z3 verifies, consensus commits — and the fabric stays consistent the way tessellating tiles stay consistent: no gaps, no overlaps, no node out of sync.
+
+## Why
+
+Tessellate isn't trying to prove that AI can run a network unsupervised — it's testing a narrower, falsifiable claim: that an LLM can be trusted to author control-plane changes if and only if those changes pass through a deterministic formal-verification gate first, and that the resulting policy can propagate consistently across a distributed fabric without depending on a single point of failure. Reproducible demos of both are planned: a Z3 gate catching an unsafe AI-generated policy before it reaches a switch, and policy state staying consistent across nodes when a consensus leader is killed mid-propagation. 
 
 | | |
 |---|---|
