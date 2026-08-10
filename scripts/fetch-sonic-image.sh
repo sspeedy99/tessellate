@@ -32,7 +32,7 @@ if docker image inspect "$SONIC_VS_TAG" >/dev/null 2>&1; then
 fi
 
 echo "Importing $ARTIFACT_PATH as $SONIC_VS_TAG ..."
-LOADED_TAG=$(docker load -q -i "$ARTIFACT_PATH" | sed -n 's/^Loaded image: //p' | tail -1)
+LOADED_TAG=$(docker load -i "$ARTIFACT_PATH" | sed -n 's/^Loaded image: //p' | tail -1)
 
 if [[ "$LOADED_TAG" != "$SONIC_VS_TAG" ]]; then
   if [[ -z "$LOADED_TAG" ]]; then
