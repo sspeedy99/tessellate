@@ -17,7 +17,7 @@ In short: AI proposes, Z3 verifies, consensus commits — and the fabric stays c
 
 ## Why
 
-Tessellate isn't trying to prove that AI can run a network unsupervised — it's testing a narrower, falsifiable claim: that an LLM can be trusted to author control-plane changes if and only if those changes pass through a deterministic formal-verification gate first, and that the resulting policy can propagate consistently across a distributed fabric without depending on a single point of failure. The repo includes reproducible demos of both: a Z3 gate catching an unsafe AI-generated policy before it reaches a switch, and policy state staying consistent across nodes when a consensus leader is killed mid-propagation.
+Tessellate isn't trying to prove that AI can run a network unsupervised — it's testing a narrower, falsifiable claim: that an LLM can be trusted to author control-plane changes if and only if those changes pass through a deterministic formal-verification gate first, and that the resulting policy can propagate consistently across a distributed fabric without depending on a single point of failure. Reproducible demos of both are planned: a Z3 gate catching an unsafe AI-generated policy before it reaches a switch, and policy state staying consistent across nodes when a consensus leader is killed mid-propagation. 
 
 | | |
 |---|---|

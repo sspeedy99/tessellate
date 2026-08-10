@@ -32,5 +32,14 @@ if docker image inspect "$SONIC_VS_TAG" >/dev/null 2>&1; then
 fi
 
 echo "Importing $ARTIFACT_PATH as $SONIC_VS_TAG ..."
-docker load -i "$ARTIFACT_PATH"
+LOADED_TAG=$(docker load -q -i "$ARTIFACT_PATH" | sed -n 's/^Loaded image: //p' | tail -1)
+
+if [[ "$LOADED_TAG" != "$SONIC_VS_TAG" ]]; then
+  if [[ -z "$LOADED_TAG" ]]; then
+    echo "Could not determine loaded image tag — check 'docker images' and retag manually to $SONIC_VS_TAG" >&2
+    exit 1
+  fi
+  docker tag "$LOADED_TAG" "$SONIC_VS_TAG"
+fi
+
 echo "Done. Verify with: docker images | grep sonic-vs"
