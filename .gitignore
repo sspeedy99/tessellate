@@ -15,6 +15,7 @@
 
 # containerlab runtime state
 .clab/
+clab-*/
 *.clab.yml.bak
 ansible-inventory.yml
 topology-data.json
