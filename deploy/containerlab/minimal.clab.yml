@@ -1,0 +1,26 @@
+name: netfabric
+
+topology:
+  nodes:
+    spine1:
+      kind: sonic-vs
+      image: docker-sonic-vs:202511
+    leaf1:
+      kind: sonic-vs
+      image: docker-sonic-vs:202511
+    leaf2:
+      kind: sonic-vs
+      image: docker-sonic-vs:202511
+    edge1:
+      kind: linux
+      image: quay.io/frrouting/frr:10.5.1
+      binds:
+        - configs/edge1/daemons:/etc/frr/daemons
+        - configs/edge1/frr.conf:/etc/frr/frr.conf
+      exec:
+        - ip link set eth1 up
+  
+  links:
+    - endpoints: ["spine1:eth1", "leaf1:eth1"]
+    - endpoints: ["spine1:eth2", "leaf2:eth1"]
+    - endpoints: ["leaf1:eth2", "edge1:eth1"]
